@@ -1,4 +1,6 @@
 package fr.uge.main;
+import fr.uge.dao.AvisDao;
+import fr.uge.dao.AvisDaoJdbc;
 import fr.uge.dao.UtilisateurDAO;
 import fr.uge.dao.UtilisateurDaoJdbc;
 import fr.uge.dao.VoitureDao;
@@ -21,20 +23,18 @@ public class Client {
 	
 	void exp01() {
 		try {
-			DataSource ds=new MySQLDataSource("eiffel");
+			DataSource ds=new MySQLDataSource("localhost", "eiffel", "root", "root");
 			Database db=new Database(ds);
-			VoitureDao dao = new VoitureDaoJdbc(db);
-		//	UtilisateurDAO utilisateurDAO=new UtilisateurDaoJdbc(db);
-			System.out.println(dao.GetVoitureById(1).getNomVoiture());
-			//kayn hta voiture
+			//VoitureDao dao = new VoitureDaoJdbc(db);
+			//UtilisateurDAO utilisateurDAO=new UtilisateurDaoJdbc(db);
+			//System.out.println(dao.GetVoitureById(1).getNomVoiture());
+			AvisDao dao = new AvisDaoJdbc(db);
+			System.out.println(dao.GetAvisById(1).getEtat());
 		
 		} catch (Exception e) {
-			
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	
-	
-
 
 }
