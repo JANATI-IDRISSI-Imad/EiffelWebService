@@ -3,6 +3,7 @@ package fr.uge.dao.mappers;
 import java.rmi.RemoteException;
 
 import commun.Avis;
+import commun.Notification;
 import commun.Role;
 import commun.Utilisateur;
 import commun.Voiture;
@@ -25,6 +26,18 @@ public class ModelMapper {
 		return u;
 	}
 	
+	
+	
+	public static Notification getNotification(UtilisateurDAO utilisateurdao,String...row) throws RemoteException {
+		
+		Notification notification = new Notification();
+		notification.setIdNotification(getInt(row[0]));
+		notification.setUtilisateur(utilisateurdao.GetUtilisateurById(getInt(row[1])));
+		notification.setMessage(row[2]);
+		return notification;
+	}
+	
+	
 	public static Voiture getVoiture(String...row) {
 			Voiture voiture = new Voiture();
 			voiture.setIdVoiture(getInt(row[0]));
@@ -36,6 +49,7 @@ public class ModelMapper {
 			voiture.setNbrLocation(getInt(row[6]));
 			voiture.setPrixVoiture(Double.parseDouble(row[7]));
 			voiture.setPhotoVoiture(row[8]);			
+			voiture.setPhotoVoiture(row[8]);
 			return voiture;
 		}
 	
