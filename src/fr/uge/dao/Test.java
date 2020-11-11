@@ -6,6 +6,11 @@ public class Test {
 		System.out.println("nodo tqowdo");
 		System.out.println("lah yrdi 3li khdem");
 	}
-	
+
+	//fgsdfgsdfgdsgf
+	public Test() {
+		
+	}
+
 }
 
