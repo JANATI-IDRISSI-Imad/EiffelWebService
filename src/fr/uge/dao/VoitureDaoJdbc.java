@@ -30,7 +30,7 @@ public class VoitureDaoJdbc implements VoitureDao{
 				v.getDescriptionVoiture(),v.getModelVoiture(),v.getNbrLocation(),
 				v.getNomVoiture(),v.getPhotoVoiture(),v.getPrixVoiture());
 		
-		return false;
+		return true;
 	}	
 
 	@Override
