@@ -8,6 +8,9 @@ public class Test {
 		//jdfipejpozkedà)kkà)
 	}
 	//fgsdfgsdfgdsgf
+	public Test() {
+		
+	}
 }
 
 //test
