@@ -8,8 +8,8 @@ public class Avis implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int idAvis;
-	private int idUtlisateur;
-	private int idVoiture;
+	private Utilisateur idUtlisateur;
+	private Voiture idVoiture;
 	private double note;
 	private String etat;
 	
@@ -17,7 +17,7 @@ public class Avis implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Avis(int idAvis, int idUtlisateur, int idVoiture, double note, String etat) {
+	public Avis(int idAvis, Utilisateur idUtlisateur, Voiture idVoiture, double note, String etat) {
 		super();
 		this.idAvis = idAvis;
 		this.idUtlisateur = idUtlisateur;
@@ -34,19 +34,19 @@ public class Avis implements Serializable{
 		this.idAvis = idAvis;
 	}
 
-	public int getIdUtlisateur() {
+	public Utilisateur getIdUtlisateur() {
 		return idUtlisateur;
 	}
 
-	public void setIdUtlisateur(int idUtlisateur) {
+	public void setIdUtlisateur(Utilisateur idUtlisateur) {
 		this.idUtlisateur = idUtlisateur;
 	}
 
-	public int getIdVoiture() {
+	public Voiture getIdVoiture() {
 		return idVoiture;
 	}
 
-	public void setIdVoiture(int idVoiture) {
+	public void setIdVoiture(Voiture idVoiture) {
 		this.idVoiture = idVoiture;
 	}
 

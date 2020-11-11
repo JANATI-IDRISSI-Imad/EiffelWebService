@@ -6,15 +6,15 @@ public class Location implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int idLocation;
-	private int idUtilisateur;
-	private int idVoiture;
+	private Utilisateur idUtilisateur;
+	private Voiture idVoiture;
 	private String dateLocation;
 	
 	public Location() {
 		
 	}
 
-	public Location(int idLocation, int idUtilisateur, int idVoiture, String dateLocation) {
+	public Location(int idLocation, Utilisateur idUtilisateur, Voiture idVoiture, String dateLocation) {
 		super();
 		this.idLocation = idLocation;
 		this.idUtilisateur = idUtilisateur;
@@ -30,19 +30,19 @@ public class Location implements Serializable{
 		this.idLocation = idLocation;
 	}
 
-	public int getIdUtilisateur() {
+	public Utilisateur getIdUtilisateur() {
 		return idUtilisateur;
 	}
 
-	public void setIdUtilisateur(int idUtilisateur) {
+	public void setIdUtilisateur(Utilisateur idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public int getIdVoiture() {
+	public Voiture getIdVoiture() {
 		return idVoiture;
 	}
 
-	public void setIdVoiture(int idVoiture) {
+	public void setIdVoiture(Voiture idVoiture) {
 		this.idVoiture = idVoiture;
 	}
 
