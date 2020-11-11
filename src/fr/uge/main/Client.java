@@ -1,3 +1,4 @@
+package fr.uge.main;
 import fr.uge.dao.UtilisateurDAO;
 import fr.uge.dao.UtilisateurDaoJdbc;
 import fr.uge.dao.VoitureDao;
@@ -25,6 +26,7 @@ public class Client {
 			VoitureDao dao = new VoitureDaoJdbc(db);
 		//	UtilisateurDAO utilisateurDAO=new UtilisateurDaoJdbc(db);
 			System.out.println(dao.GetVoitureById(1).getNomVoiture());
+			//kayn hta voiture
 		
 		} catch (Exception e) {
 			
