@@ -9,8 +9,8 @@ import commun.Voiture;
 
 public interface LocationDao extends Remote{
 	
-	public boolean LouerVoiture(Voiture v) throws RemoteException;
-	public boolean ReturnVoiture(Voiture v) throws RemoteException;
+	public boolean LouerVoiture(Location v) throws RemoteException;
+	public boolean ReturnVoiture(Location v, String etat) throws RemoteException;
 	public Location GetLocationById(int id) throws RemoteException;
 	
 	public List<Location> ListLocationByVoiture(int idVoiture) throws RemoteException;

@@ -6,8 +6,8 @@ public class Location implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int idLocation;
-	private Utilisateur idUtilisateur;
-	private Voiture idVoiture;
+	private Utilisateur utilisateur;
+	private Voiture voiture;
 	private String dateLocation;
 	
 	public Location() {
@@ -17,8 +17,8 @@ public class Location implements Serializable{
 	public Location(int idLocation, Utilisateur idUtilisateur, Voiture idVoiture, String dateLocation) {
 		super();
 		this.idLocation = idLocation;
-		this.idUtilisateur = idUtilisateur;
-		this.idVoiture = idVoiture;
+		this.utilisateur = idUtilisateur;
+		this.voiture = idVoiture;
 		this.dateLocation = dateLocation;
 	}
 
@@ -30,20 +30,20 @@ public class Location implements Serializable{
 		this.idLocation = idLocation;
 	}
 
-	public Utilisateur getIdUtilisateur() {
-		return idUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setIdUtilisateur(Utilisateur idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public Voiture getIdVoiture() {
-		return idVoiture;
+	public Voiture getVoiture() {
+		return voiture;
 	}
 
-	public void setIdVoiture(Voiture idVoiture) {
-		this.idVoiture = idVoiture;
+	public void setVoiture(Voiture voiture) {
+		this.voiture = voiture;
 	}
 
 	public String getDateLocation() {
@@ -56,7 +56,7 @@ public class Location implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Location [idLocation=" + idLocation + ", idUtilisateur=" + idUtilisateur + ", idVoiture=" + idVoiture
+		return "Location [idLocation=" + idLocation + ", Utilisateur=" + utilisateur + ", Voiture=" + voiture
 				+ ", dateLocation=" + dateLocation + "]";
 	}
 	

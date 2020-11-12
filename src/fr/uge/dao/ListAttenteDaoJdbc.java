@@ -19,7 +19,7 @@ public class ListAttenteDaoJdbc implements ListAttenteDao{
 	
 	@Override
 	public ListeAttente AfficherListeAttenteByVoiture(int idVoiture) throws RemoteException {
-		//ListeAttente listA = new ListeAttente(idVoiture,);
+		
 		return null;
 	}
 
