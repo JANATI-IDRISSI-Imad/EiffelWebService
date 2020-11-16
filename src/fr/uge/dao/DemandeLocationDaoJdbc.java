@@ -5,11 +5,13 @@ import java.util.List;
 
 import commun.DemandeLocation;
 
+
 public class DemandeLocationDaoJdbc implements DemandeLocationDao{
 
+	
 	@Override
 	public boolean newDemandeLocation(DemandeLocation d) throws RemoteException {
-		// TODO Auto-generated method stub
+	
 		return false;
 	}
 

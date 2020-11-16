@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class DemandeLocation implements Serializable{
 	private int idDemande;
-	private int idUtilisateur;
-	private int idVoiture;
+	private Utilisateur utilisateur;
+	private Voiture voiture;
 	private String dateDemande;
 	private boolean traitementDemande;
 	
@@ -13,11 +13,11 @@ public class DemandeLocation implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public DemandeLocation(int idDemande, int idUtilisateur, int idVoiture, String dateDemande, boolean traitementDemande) {
+	public DemandeLocation(int idDemande, Utilisateur utilisateur, Voiture voiture, String dateDemande, boolean traitementDemande) {
 		super();
 		this.idDemande = idDemande;
-		this.idUtilisateur = idUtilisateur;
-		this.idVoiture = idVoiture;
+		this.utilisateur = utilisateur;
+		this.voiture = voiture;
 		this.dateDemande = dateDemande;
 		this.traitementDemande = traitementDemande;
 	}
@@ -40,20 +40,20 @@ public class DemandeLocation implements Serializable{
 		this.idDemande = idDemande;
 	}
 
-	public int getIdUtilisateur() {
-		return idUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public int getIdVoiture() {
-		return idVoiture;
+	public Voiture getIdVoiture() {
+		return voiture;
 	}
 
-	public void setIdVoiture(int idVoiture) {
-		this.idVoiture = idVoiture;
+	public void setIdVoiture(Voiture voiture) {
+		this.voiture = voiture;
 	}
 
 	public String getDateDemande() {
@@ -66,8 +66,8 @@ public class DemandeLocation implements Serializable{
 
 	@Override
 	public String toString() {
-		return "DemandeLocation [idDemande=" + idDemande + ", idUtilisateur=" + idUtilisateur + ", idVoiture="
-				+ idVoiture + ", dateDemande=" + dateDemande + ", traitementDemande=" + traitementDemande + "]";
+		return "DemandeLocation [idDemande=" + idDemande + ", idUtilisateur=" + utilisateur + ", idVoiture="
+				+ voiture + ", dateDemande=" + dateDemande + ", traitementDemande=" + traitementDemande + "]";
 	}
 	
 	

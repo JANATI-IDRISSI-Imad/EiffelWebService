@@ -12,12 +12,14 @@ public class ListAttenteDaoJdbc implements ListAttenteDao{
 	private Database db;
 	private VoitureDao voitureDao;
 	private UtilisateurDAO utilisateurDao;
-//Makamlach khassna DemandelocationDao
+	//Makamlach khassna DemandelocationDao
+	//notificationDao sawebtha
+	
 	
 	
 	@Override
 	public ListeAttente AfficherListeAttenteByVoiture(int idVoiture) throws RemoteException {
-		//ListeAttente listA = new ListeAttente(idVoiture,);
+		
 		return null;
 	}
 
