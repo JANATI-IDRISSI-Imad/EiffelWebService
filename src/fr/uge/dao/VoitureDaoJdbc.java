@@ -36,13 +36,18 @@ public class VoitureDaoJdbc implements VoitureDao{
 	@Override
 	public boolean ModifierVoiture(Voiture v) throws RemoteException {
 
-		
-		return false;
+		db.update("voiture",  v.getIdVoiture(), v.getMarqueVoiture(),v.getMatriculeVoiture(),
+				v.getDescriptionVoiture(),v.getModelVoiture(),v.getNbrLocation(),
+				v.getNomVoiture(),v.getPhotoVoiture(),v.getPrixVoiture());
+		return true;
 	}
 
 	@Override
-	public int SupprimerVoiture(Voiture v) throws RemoteException {
-		return db.delete("voiture","idVoiture", v.getIdVoiture());
+	public boolean SupprimerVoiture(Voiture v) throws RemoteException {
+		if( db.delete("voiture","idVoiture", v.getIdVoiture())>0) {
+			return true;
+		}
+		return false;
 		
 	}
 
@@ -110,8 +115,13 @@ public class VoitureDaoJdbc implements VoitureDao{
 
 	@Override
 	public List<Voiture> ListVoiturePretEtreVendu() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Voiture> list = ListVoiture();
+		Vector<Voiture> res =new Vector<Voiture>();
+		for (Voiture voiture : list) {
+			if(  voiture.getNbrLocation()>=1) res.add(voiture);
+		}
+		
+		return res;
 	}
 
 	@Override
