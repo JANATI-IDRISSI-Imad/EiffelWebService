@@ -103,7 +103,6 @@ public class VoitureDaoJdbc implements VoitureDao{
 		
 		for (int i = 1; i < tab.length; i++) {
 			listVoiture.add(ModelMapper.getVoiture(tab[i]));
-			
 		}
 		return listVoiture;
 	}
