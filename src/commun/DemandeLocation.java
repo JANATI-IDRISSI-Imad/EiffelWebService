@@ -48,7 +48,7 @@ public class DemandeLocation implements Serializable{
 		this.utilisateur = utilisateur;
 	}
 
-	public Voiture getIdVoiture() {
+	public Voiture getVoiture() {
 		return voiture;
 	}
 
@@ -63,6 +63,8 @@ public class DemandeLocation implements Serializable{
 	public void setDateDemande(String dateDemande) {
 		this.dateDemande = dateDemande;
 	}
+	
+	
 
 	@Override
 	public String toString() {

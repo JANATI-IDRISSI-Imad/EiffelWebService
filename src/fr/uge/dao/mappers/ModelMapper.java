@@ -3,6 +3,7 @@ package fr.uge.dao.mappers;
 import java.rmi.RemoteException;
 
 import commun.Avis;
+import commun.DemandeLocation;
 import commun.Notification;
 import commun.Role;
 import commun.Utilisateur;
@@ -79,6 +80,26 @@ public class ModelMapper {
 		r.setIdRole(getInt(row[0]));
 		r.setRole(row[1]);
 		return r;
+	}
+	public static DemandeLocation getDemandeLocation(UtilisateurDAO utilisateurDAO,VoitureDao voitureDao,String...row) throws RemoteException {
+		DemandeLocation d=new DemandeLocation();
+		d.setIdDemande(getInt(row[0]));
+		d.setIdVoiture(voitureDao.GetVoitureById(getInt(row[1])));
+		d.setUtilisateur(utilisateurDAO.GetUtilisateurById(getInt(row[2])));
+		d.setDateDemande(row[3]);
+		d.setTraitementDemande(getBoolean(row[4]));
+		return d;
+	}
+	
+public static Boolean getBoolean(String data) {
+		
+		try {
+			return Boolean.getBoolean(data);
+		} 
+		catch (Exception e) {
+			System.out.println("Erreur : " + e.getMessage());
+			return false;
+		}
 	}
 	
 	
