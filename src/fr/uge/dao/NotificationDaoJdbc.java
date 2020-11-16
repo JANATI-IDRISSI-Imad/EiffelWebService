@@ -19,10 +19,10 @@ public class NotificationDaoJdbc implements NotificationDao{
 	private Database db;
 	private UtilisateurDAO utilisateurDao;
 	
-	public NotificationDaoJdbc(Database db) {
+	public NotificationDaoJdbc(Database db, UtilisateurDAO utilisateurDao) {
 		super();
 		this.db = db;
-		utilisateurDao = new UtilisateurDaoJdbc(db);
+		this.utilisateurDao = utilisateurDao;
 	}
 
 	@Override

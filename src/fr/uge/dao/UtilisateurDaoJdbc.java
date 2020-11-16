@@ -11,9 +11,9 @@ public class UtilisateurDaoJdbc implements UtilisateurDAO{
 	private Database db;
 	private String tableName ="utilisateur";
 	private RoleDAO roleDAO;
-	public UtilisateurDaoJdbc(Database db) {
+	public UtilisateurDaoJdbc(Database db,RoleDAO roleDAO) {
 		this.db=db;
-		roleDAO=new RoleDaoJdbc(db);
+		this.roleDAO=roleDAO;
 	}
 	
 	@Override

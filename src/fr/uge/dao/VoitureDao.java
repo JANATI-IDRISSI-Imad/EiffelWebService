@@ -10,7 +10,7 @@ public interface VoitureDao extends Remote {
 
 	public boolean AjouterVoiture(Voiture v) throws RemoteException;
 	public boolean ModifierVoiture(Voiture v) throws RemoteException;
-	public int SupprimerVoiture(Voiture v) throws RemoteException;
+	public boolean SupprimerVoiture(Voiture v) throws RemoteException;
 	public boolean DisponibiliteVoiture(int idVoiture) throws RemoteException;
 	public boolean UpdateVoitureLouer(int idVoiture) throws RemoteException;
 	public boolean UpdateVoitureReturner(int idVoiture, String etat) throws RemoteException;

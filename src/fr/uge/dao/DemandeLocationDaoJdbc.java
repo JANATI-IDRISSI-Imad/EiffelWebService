@@ -10,7 +10,6 @@ import commun.Voiture;
 import fr.uge.dao.jdbc.Database;
 import fr.uge.dao.mappers.ModelMapper;
 
-
 public class DemandeLocationDaoJdbc implements DemandeLocationDao{
 
 	private String tableName ="demandelocation";
@@ -18,6 +17,8 @@ public class DemandeLocationDaoJdbc implements DemandeLocationDao{
 	private UtilisateurDAO utilisateurDAO;
 	private VoitureDao voitureDao;
 	private NotificationDao notificationDao;
+	
+
 	public DemandeLocationDaoJdbc(Database db,UtilisateurDAO utilisateurDAO,VoitureDao voitureDao,NotificationDao notificationDao) {
 		this.db=db;
 		this.utilisateurDAO=utilisateurDAO;
@@ -32,7 +33,8 @@ public class DemandeLocationDaoJdbc implements DemandeLocationDao{
 	}
 
 	@Override
-	public void traitementDemande(DemandeLocation d) throws RemoteException {
+	public void traitementDemande(int idDemandeLocation) throws RemoteException {
+		DemandeLocation d=getDLocationByIdDemande(idDemandeLocation);
 		d.setTraitementDemande(true);
 		db.update(tableName,d.getIdDemande(), d.getVoiture().getIdVoiture(),d.getUtilisateur().getIdUtilisateur() ,d.getDateDemande(),d.isTraitementDemande());	
 	}
@@ -83,7 +85,8 @@ public class DemandeLocationDaoJdbc implements DemandeLocationDao{
 	}
 
 	@Override
-	public List<DemandeLocation> getDemandeLocationNonTraiteByVoiture(Voiture v) throws RemoteException {
+	public List<DemandeLocation> getDemandeLocationNonTraiteByVoiture(int idVoiture) throws RemoteException {
+		Voiture v=voitureDao.GetVoitureById(idVoiture);
 		List<DemandeLocation>list=getDemandeLocationByidUser(v.getIdVoiture());
 		List<DemandeLocation>demandeLocations=new ArrayList<>();
 		for (DemandeLocation d : list) {

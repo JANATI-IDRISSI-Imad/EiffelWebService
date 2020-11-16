@@ -20,11 +20,11 @@ public class AvisDaoJdbc implements AvisDao{
 		
 	}
 	
-	public AvisDaoJdbc(Database db) {
+	public AvisDaoJdbc(Database db,UtilisateurDAO utilisateurDAO,VoitureDao voitureDao) {
 		super();
 		this.db = db;
-		utilisateurDAO = new UtilisateurDaoJdbc(db);
-		voitureDao = new VoitureDaoJdbc(db);
+		this.utilisateurDAO = utilisateurDAO;
+		this.voitureDao = voitureDao;
 	}
 
 	@Override
