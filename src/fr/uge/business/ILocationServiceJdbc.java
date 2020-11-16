@@ -4,16 +4,34 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import commun.Avis;
 import commun.DemandeLocation;
 import commun.ILocationService;
+import commun.ListeAttente;
 import commun.Location;
+import commun.Notification;
+import commun.Role;
+import commun.Utilisateur;
 import commun.Voiture;
 import fr.uge.dao.AvisDao;
+import fr.uge.dao.AvisDaoJdbc;
+import fr.uge.dao.DemandeLocationDao;
+import fr.uge.dao.DemandeLocationDaoJdbc;
+import fr.uge.dao.ListAttenteDao;
+import fr.uge.dao.ListAttenteDaoJdbc;
 import fr.uge.dao.LocationDao;
+import fr.uge.dao.LocationDaoJdbc;
 import fr.uge.dao.NotificationDao;
+import fr.uge.dao.NotificationDaoJdbc;
+import fr.uge.dao.RoleDAO;
+import fr.uge.dao.RoleDaoJdbc;
 import fr.uge.dao.UtilisateurDAO;
+import fr.uge.dao.UtilisateurDaoJdbc;
 import fr.uge.dao.VoitureDao;
+import fr.uge.dao.VoitureDaoJdbc;
+import fr.uge.dao.jdbc.DataSource;
 import fr.uge.dao.jdbc.Database;
+import fr.uge.dao.jdbc.MySQLDataSource;
 
 public class ILocationServiceJdbc extends UnicastRemoteObject implements ILocationService{
 
@@ -25,11 +43,20 @@ public class ILocationServiceJdbc extends UnicastRemoteObject implements ILocati
 	private NotificationDao notificationDao;
 	private UtilisateurDAO utilisateurDAO;
 	private LocationDao locationDao;
-	
+	private DemandeLocationDao demandeLocationDao;
+	private ListAttenteDao listAttenteDao;
+	private RoleDAO roleDAO;
 	
 	protected ILocationServiceJdbc() throws RemoteException {
-		super();
-		// TODO Auto-generated constructor stub
+		DataSource ds = new MySQLDataSource("eiffel");
+		db = new Database(ds);
+		avisDao = new AvisDaoJdbc(db);
+		voitureDao = new VoitureDaoJdbc(db);
+		notificationDao = new NotificationDaoJdbc(db);
+		utilisateurDAO = new UtilisateurDaoJdbc(db);
+		locationDao = new LocationDaoJdbc(db, voitureDao, utilisateurDAO);
+		demandeLocationDao = new DemandeLocationDaoJdbc(db);
+		roleDAO = new RoleDaoJdbc(db);
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -112,41 +139,117 @@ public class ILocationServiceJdbc extends UnicastRemoteObject implements ILocati
 		
 		return locationDao.ListLocationByVoiture(idVoiture);
 	}
-
+	
 	@Override
-	public List<Location> ListLocationByUtilisateur(int idUtilisateur) throws RemoteException {
-		
-		return locationDao.GetLocationByUtilisateur(idUtilisateur);
-	}
-
-	@Override
-	public boolean NouvelleDemandeLocation(DemandeLocation d) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void TraitementDemande(int idDemandeLocation) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public DemandeLocation getDemandeLocationByidDemande(int idDemandeLocation) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Location> ListLocationByUser(int idUtilisateur) throws RemoteException {
+		return locationDao.ListLocationByUser(idUtilisateur);
 	}
 
 	@Override
 	public List<DemandeLocation> getDemandeLocationNonTraiteByidProduit(int idVoiture) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return demandeLocationDao.getDemandeLocationNonTraiteByidProduit(idVoiture);
 	}
 
 	@Override
 	public List<DemandeLocation> getDemandeLocationByidUser(int idUser) throws RemoteException {
-		// TODO Auto-generated method stub
+		return demandeLocationDao.getDemandeLocationByidUser(idUser);
+	}
+
+	@Override
+	public List<Voiture> ListVoitureByType(String type) throws RemoteException {
 		return null;
 	}
+
+	@Override
+	public boolean newDemandeLocation(DemandeLocation d) throws RemoteException {
+		return demandeLocationDao.newDemandeLocation(d);
+	}
+
+	@Override
+	public void traitementDemande(int idDemandeLocation) throws RemoteException {
+		demandeLocationDao.traitementDemande(idDemandeLocation);
+	}
+
+	@Override
+	public DemandeLocation getDLocationByIdDemande(int idDemandeLocation) throws RemoteException {
+		return demandeLocationDao.getDLocationByIdDemande(idDemandeLocation);
+	}
+
+	@Override
+	public DemandeLocation getDemandeLocationByidVoitureAndIdUtilisateur(int idVoiture, int idUtilisateur) throws RemoteException {
+		return demandeLocationDao.getDemandeLocationByidVoitureAndIdUtilisateur(idVoiture, idUtilisateur);
+	}
+
+	@Override
+	public String Authentification(String email, String password) throws RemoteException {
+		return utilisateurDAO.Authentification(email, password);
+	}
+
+	@Override
+	public Utilisateur GetUtilisateurById(int id) throws RemoteException {
+		return utilisateurDAO.GetUtilisateurById(id);
+	}
+
+	@Override
+	public Role getRoleById(int id) {
+		return roleDAO.getRoleById(id);
+	}
+
+	@Override
+	public void NotifierUtilisateur(int IdUtilisateur, String message) throws RemoteException {
+		notificationDao.NotifierUtilisateur(IdUtilisateur, message);
+	}
+
+	@Override
+	public Notification GetNotificationById(int idNotification) throws RemoteException {
+		return notificationDao.GetNotificationById(idNotification);
+	}
+
+	@Override
+	public List<Notification> GetNotificationByUtilisateur(int idUtilisateur) throws RemoteException {
+		return notificationDao.GetNotificationByUtilisateur(idUtilisateur);
+	}
+
+	@Override
+	public ListeAttente AfficherListeAttenteByVoiture(int idVoiture) throws RemoteException {
+		return listAttenteDao.AfficherListeAttenteByVoiture(idVoiture);
+	}
+
+	@Override
+	public Utilisateur UtilisateurPrioritaire(ListeAttente a) throws RemoteException {
+		return listAttenteDao.UtilisateurPrioritaire(a);
+	}
+
+	@Override
+	public void TraitementListAttente(int idVoiture) throws RemoteException {
+		listAttenteDao.TraitementListAttente(idVoiture);
+	}
+
+	@Override
+	public boolean AjouterAvis(Avis a) throws RemoteException {
+		return avisDao.AjouterAvis(a);
+	}
+
+	@Override
+	public boolean SupprimerAvis(Avis a) throws RemoteException {
+		return avisDao.SupprimerAvis(a);
+	}
+
+	@Override
+	public boolean ModifierAvis(Avis a) throws RemoteException {
+		return avisDao.ModifierAvis(a);
+	}
+
+	@Override
+	public Avis GetAvisById(int idAvis) throws RemoteException {
+		return avisDao.GetAvisById(idAvis);
+	}
+
+	@Override
+	public List<Avis> ListAvisByVoiture(int idVoiture) throws RemoteException {
+		return avisDao.ListAvisByVoiture(idVoiture);
+	}
+
+	
 
 }

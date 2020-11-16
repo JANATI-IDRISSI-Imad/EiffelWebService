@@ -24,16 +24,33 @@ public interface ILocationService extends Remote{
 	public void RetournerVoiture(Location l,String etat) throws RemoteException;
 	public Location GetLocationById(int id) throws RemoteException;
 	public List<Location> ListLocationByVoiture(int idVoture) throws RemoteException;
-	public List<Location> ListLocationByUtilisateur(int idUtilisateur) throws RemoteException;
-	
+	public List<Location> ListLocationByUser(int idUtilisateur) throws RemoteException;
 	
 
-	public boolean NouvelleDemandeLocation(DemandeLocation d) throws RemoteException;
-	public void TraitementDemande(int idDemandeLocation) throws RemoteException;
-	public DemandeLocation getDemandeLocationByidDemande(int idDemandeLocation) throws RemoteException;
-	public List<DemandeLocation>  getDemandeLocationNonTraiteByidProduit(int idVoiture) throws RemoteException;
-	public List<DemandeLocation> getDemandeLocationByidUser(int idUser) throws RemoteException;
+	public boolean newDemandeLocation(DemandeLocation d) throws RemoteException;
+	public void traitementDemande(int idDemandeLocation) throws RemoteException;
+	public DemandeLocation getDLocationByIdDemande(int idDemandeLocation) throws RemoteException;
+	public List<DemandeLocation> getDemandeLocationNonTraiteByidProduit(int idVoiture) throws RemoteException;
+	public DemandeLocation getDemandeLocationByidVoitureAndIdUtilisateur(int idVoiture,int idUtilisateur) throws RemoteException;
+	public List<DemandeLocation> getDemandeLocationByidUser(int idUtilisateur) throws RemoteException;
 	
+	public String Authentification(String email,String password)  throws RemoteException;
+	public Utilisateur GetUtilisateurById(int id)  throws RemoteException;
 	
+	public Role getRoleById(int id) ;
+	
+	public void NotifierUtilisateur(int IdUtilisateur,String message)  throws RemoteException;
+	public Notification GetNotificationById(int idNotification)  throws RemoteException;
+	public List<Notification> GetNotificationByUtilisateur(int idUtilisateur)  throws RemoteException;
+	
+	public ListeAttente AfficherListeAttenteByVoiture(int idVoiture)  throws RemoteException;
+	public Utilisateur UtilisateurPrioritaire(ListeAttente a)  throws RemoteException;
+	public void TraitementListAttente(int idVoiture)  throws RemoteException;
+	
+	public boolean AjouterAvis(Avis a) throws RemoteException;
+	public boolean SupprimerAvis(Avis a) throws RemoteException;
+	public boolean ModifierAvis(Avis a) throws RemoteException;
+	public Avis GetAvisById(int idAvis) throws RemoteException;
+	public List<Avis> ListAvisByVoiture(int idVoiture) throws RemoteException;
 	
 }

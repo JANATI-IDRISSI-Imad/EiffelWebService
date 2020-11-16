@@ -4,9 +4,18 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import commun.DemandeLocation;
+import fr.uge.dao.jdbc.Database;
 
 
 public class DemandeLocationDaoJdbc implements DemandeLocationDao{
+	
+	private Database db;
+	
+	public DemandeLocationDaoJdbc(Database db) {
+		super();
+		this.db = db;
+		
+	}
 
 	
 	@Override
