@@ -40,8 +40,9 @@ public interface ILocationService extends Remote{
 	
 	public String Authentification(String email,String password)  throws RemoteException;
 	public Utilisateur GetUtilisateurById(int id)  throws RemoteException;
+	public Utilisateur GetUtilisateurByEmail(String email)  throws RemoteException;
 	
-	public Role getRoleById(int id) ;
+	//public Role getRoleById(int id);
 	
 	public void NotifierUtilisateur(int IdUtilisateur,String message)  throws RemoteException;
 	public Notification GetNotificationById(int idNotification)  throws RemoteException;

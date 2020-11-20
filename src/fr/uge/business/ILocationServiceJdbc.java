@@ -47,8 +47,8 @@ public class ILocationServiceJdbc extends UnicastRemoteObject implements ILocati
 	private ListAttenteDao listAttenteDao;
 	private RoleDAO roleDAO;
 	
-	protected ILocationServiceJdbc() throws RemoteException {
-		DataSource ds = new MySQLDataSource("eiffel");
+	public ILocationServiceJdbc() throws RemoteException {
+		DataSource ds = new MySQLDataSource("localhost", "eiffel", "root", "root");
 		db = new Database(ds);
 		roleDAO = new RoleDaoJdbc(db);
 		voitureDao = new VoitureDaoJdbc(db);
@@ -190,7 +190,6 @@ public class ILocationServiceJdbc extends UnicastRemoteObject implements ILocati
 		return utilisateurDAO.GetUtilisateurById(id);
 	}
 
-	@Override
 	public Role getRoleById(int id) {
 		return roleDAO.getRoleById(id);
 	}
@@ -268,6 +267,11 @@ public class ILocationServiceJdbc extends UnicastRemoteObject implements ILocati
 	@Override
 	public void traitementListAttente(int idVoiture) throws RemoteException {
 		demandeLocationDao.traitementListAttente(voitureDao.GetVoitureById(idVoiture));
+	}
+
+	@Override
+	public Utilisateur GetUtilisateurByEmail(String email) throws RemoteException {
+		return utilisateurDAO.GetUtilisateurByEmail(email);
 	}
 
 	

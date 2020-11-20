@@ -31,7 +31,7 @@ public class Client {
 			//VoitureDao dao = new VoitureDaoJdbc(db);
 			//UtilisateurDAO utilisateurDAO=new UtilisateurDaoJdbc(db);
 			//System.out.println(dao.GetVoitureById(1).getNomVoiture());
-			AvisDao dao = new AvisDaoJdbc(db);
+			AvisDao dao = new AvisDaoJdbc();
 			System.out.println(dao.GetAvisById(1).getEtat());
 			//NotificationDao dao = new NotificationDaoJdbc(db);
 		//	UtilisateurDAO utilisateurDAO=new UtilisateurDaoJdbc(db);

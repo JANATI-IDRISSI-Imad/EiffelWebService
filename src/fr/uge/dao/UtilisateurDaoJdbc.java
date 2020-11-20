@@ -35,8 +35,13 @@ public class UtilisateurDaoJdbc implements UtilisateurDAO{
 		if (data.length <= 1) return null;
 		return  ModelMapper.getUtilisateur(roleDAO,data[1]);		
 	}
-	
-	
 
+	@Override
+	public Utilisateur GetUtilisateurByEmail(String email) throws RemoteException {
+		String data[][] = db.select(tableName, "emailU", email);
+		if (data == null) return null;
+		if (data.length <= 1) return null;
+		return  ModelMapper.getUtilisateur(roleDAO,data[1]);		
+	}
 	
 }
